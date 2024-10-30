@@ -19,6 +19,7 @@ O objetivo é criar um sistema backend robusto e escalável para gerenciar o est
 * **Bcrypt:** Biblioteca para criptografar senhas de forma segura.
 * **jsonwebtoken:** Biblioteca para gerar tokens de autenticação JWT.
 * **TypeScript:** Linguagem de tipagem estática para JavaScript, adicionando mais segurança e organização ao código.
+* **Cors:** Mecanismo de segurança que permite que aplicações web modernas se comuniquem com recursos em diferentes origens.
 
 ### Como executar
 1. **Clonar o repositório:**
