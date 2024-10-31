@@ -30,7 +30,7 @@ O objetivo é criar um sistema backend robusto e escalável para gerenciar o est
 
    npm install
 
-3. **Clonar o repositório:**
+3. **Iniciar o projeto:**
 
    npm start
 
