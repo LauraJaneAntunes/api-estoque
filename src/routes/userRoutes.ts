@@ -7,7 +7,7 @@ import userValidation from '../middleware/userValidation';
 
 const router = express.Router();
 
-router.post(  '/users', userValidation, async (req:any, res:any) => {
+router.post('/', userValidation, async (req:any, res:any) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -25,7 +25,6 @@ router.post(  '/users', userValidation, async (req:any, res:any) => {
   }
 });
 
-// Adicione isso ao seu arquivo userRoutes.ts
 router.get('/', async (req:any, res:any) => {
   try {
     const users = await User.findAll();
@@ -48,5 +47,37 @@ router.get('/:id', async (req:any, res:any) => {
   }
 });
 
+router.put('/:id', userValidation, async (req:any, res:any) => {
+  const { id } = req.params;
+  const { name, email, role } = req.body;
+
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    await user.update({ name, email, role });
+    return res.json(user);
+  } catch (error) {
+    return res.status(500).json({ error: 'Erro ao atualizar usuário' });
+  }
+});
+
+router.delete('/:id', async (req:any, res:any) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findByPk(id);
+    if (!user) {
+      return res.status(404).json({ error: 'Usuário não encontrado' });
+    }
+
+    await user.destroy();
+    return res.status(204).send();
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    return res.status(500).json({ error: 'Erro ao deletar usuário' });
+  }
+});
 
 export default router;
