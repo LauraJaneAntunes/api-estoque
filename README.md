@@ -24,7 +24,7 @@ O objetivo é criar um sistema backend robusto e escalável para gerenciar o est
 ### Como executar
 1. **Clonar o repositório:**
 
-   git clone [URL]
+   git clone (https://github.com/LauraJaneAntunes/api-estoque)
 
 2. **Instalar dependecias:**
 

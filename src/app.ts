@@ -6,8 +6,15 @@ import { json } from 'body-parser';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+   origin: 'http://localhost:3000' // URL do Front
+}));
+
 app.use(json());
+
+app.get('/api', (req, res) => {
+  res.send('Hello World');
+});
 
 app.use('/api/produtos', productRoutes);
 app.use('/api/usuarios', userRoutes);
