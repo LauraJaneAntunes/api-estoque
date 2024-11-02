@@ -7,7 +7,6 @@ interface UserAttributes {
   name: string;
   email: string;
   password: string;
-  role: string;
 }
 
 class User extends Model<UserAttributes> implements UserAttributes {
@@ -15,7 +14,6 @@ class User extends Model<UserAttributes> implements UserAttributes {
   public name!: string;
   public email!: string;
   public password!: string;
-  public role!: string;
 
   public async checkPassword(password: string): Promise<boolean> {
     return bcrypt.compare(password, this.password);
@@ -41,10 +39,6 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    role: {
-      type: DataTypes.STRING,
-      defaultValue: 'user',
     },
   },
   {

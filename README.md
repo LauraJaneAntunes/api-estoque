@@ -20,6 +20,7 @@ O objetivo é criar um sistema backend robusto e escalável para gerenciar o est
 * **jsonwebtoken:** Biblioteca para gerar tokens de autenticação JWT.
 * **TypeScript:** Linguagem de tipagem estática para JavaScript, adicionando mais segurança e organização ao código.
 * **Cors:** Mecanismo de segurança que permite que aplicações web modernas se comuniquem com recursos em diferentes origens.
+* **Dotenv:** Biblioteca que facilita o gerenciamento de variáveis de ambiente permitindo que informações sensíveis, como chaves de API e configurações, fiquem armazenadas separadamente do código, melhorando a segurança e a organização.
 
 ### Como executar
 1. **Clonar o repositório:**
@@ -30,7 +31,11 @@ O objetivo é criar um sistema backend robusto e escalável para gerenciar o est
 
    npm install
 
-3. **Iniciar o projeto:**
+3. **Configurar variavéis de ambiente:**
+
+   renomeie o arquivo: envdeexemplo para .env e adicione suas senhas
+
+4. **Iniciar o projeto:**
 
    npm start
 

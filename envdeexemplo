@@ -1,0 +1,11 @@
+# Adicione suas variaveis de ambiente e renomeiei este arquivo para .env:
+
+REACT_APP_API_URL=http://localhost:5000
+
+JWT_SECRET=digite a sua senha aqui
+
+DB_NAME=estoque
+DB_USER=root
+DB_PASSWORD=digite a sua senha aqui
+DB_HOST=localhost
+DB_DIALECT=mysql
