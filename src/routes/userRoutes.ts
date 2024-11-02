@@ -47,8 +47,8 @@ router.post('/login', async (req: any, res: any) => {
     }
 
     const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
-
-    return res.status(200).json({ message: "Login bem-sucedido", token });
+  
+    return res.status(200).json({ message: "Login bem-sucedido", accessToken: token });
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     return res.status(500).json({ error: "Erro ao fazer login" });
