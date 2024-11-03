@@ -21,6 +21,7 @@ O objetivo é criar um sistema backend robusto e escalável para gerenciar o est
 * **TypeScript:** Linguagem de tipagem estática para JavaScript, adicionando mais segurança e organização ao código.
 * **Cors:** Mecanismo de segurança que permite que aplicações web modernas se comuniquem com recursos em diferentes origens.
 * **Dotenv:** Biblioteca que facilita o gerenciamento de variáveis de ambiente permitindo que informações sensíveis, como chaves de API e configurações, fiquem armazenadas separadamente do código, melhorando a segurança e a organização.
+* **Multer:** Biblioteca de middleware que facilita o tratamento de upload de arquivos em requisições HTTP.
 
 ### Como executar
 1. **Clonar o repositório:**

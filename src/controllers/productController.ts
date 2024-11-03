@@ -1,29 +1,22 @@
 import { Request, Response } from 'express';
 import fs from 'fs';
-import path from 'path';
 import Product from '../models/productModel';
 
 // Função para criar um produto
 export const createProduct = async (req: Request, res: Response) => {
-  const { name, description, price, quantity, image } = req.body;
+  const { name, description, price, quantity} = req.body;
+  let imageBuffer: Buffer | null = null;
 
   try {
-    let imagePath = null;
 
     // Processamento de imagem
-    if (image) {
-      const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
-      const buffer = Buffer.from(base64Data, 'base64');
+    if (req.file) {
+      imageBuffer = req.file.buffer;
 
-      const filename = `image_${Date.now()}.png`;
-      imagePath = path.join(__dirname, '..', 'uploads', filename);
-
-      // Salvar a imagem no diretório
-      fs.writeFileSync(imagePath, buffer);
     }
 
     // Criação do produto no banco de dados
-    const product = await Product.create({ name, description, price, quantity, image: imagePath });
+    const product = await Product.create({ name, description, price, quantity, image: imageBuffer });
 
     return res.status(201).json(product);
   } catch (error) {
@@ -61,19 +54,14 @@ export const getProductById = async (req: Request, res: Response) => {
 // Função para atualizar um produto por ID
 export const updateProduct = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { name, description, price, quantity, image } = req.body;
+  const { name, description, price, quantity } = req.body;
+  let updatedFields: any = { name, description, price, quantity };
 
   try {
-    let updatedFields: any = { name, description, price, quantity };
-
-    if (image) {
-      const base64Data = image.replace(/^data:image\/\w+;base64,/, '');
-      const buffer = Buffer.from(base64Data, 'base64');
-      const filename = `image_${Date.now()}.png`;
-      const imagePath = path.join(__dirname, '..', 'uploads', filename);
-      fs.writeFileSync(imagePath, buffer);
-
-      updatedFields.image = imagePath;
+    
+    if (req.file) {
+      const imageBuffer = req.file.buffer; // Captura o buffer diretamente
+      updatedFields.image = imageBuffer; // Atualiza o campo de imagem
     }
 
     await Product.update(updatedFields, { where: { id } });
